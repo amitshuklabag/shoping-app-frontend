@@ -56,7 +56,7 @@ class Header extends Component {
             <NavbarBrand>
               <NavLink link to="" className="navbar-text">
                 {" "}
-                Fashion Junction
+                Fashion Junction (Amit)
               </NavLink>
             </NavbarBrand>
             <NavbarToggler onClick={this.toggle} />
