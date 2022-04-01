@@ -93,7 +93,7 @@ class Headers extends Component {
             <NavbarBrand>
               <NavLink link to="" className="navbar-text">
                 {" "}
-                Fashion Junction
+                Fashion Junction  (Latest CI/CD)
               </NavLink>
             </NavbarBrand>
             <NavbarToggler onClick={this.toggle} />
