@@ -3,7 +3,6 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { toast } from "react-toastify";
 import ResetComponent from "../../components/login/resetpassword";
-import Validator, { ValidationTypes } from "js-object-validation";
 
 class ResetPassword extends Component {
   constructor() {
@@ -68,37 +67,7 @@ class ResetPassword extends Component {
     try {
       const { password, cpassword } = this.state;
       const obj = { password, cpassword }
-      const validations = {
-
-        password: {
-          [ValidationTypes.REQUIRED]: true,
-          [ValidationTypes.PASSWORD]: true,
-          [ValidationTypes.MINLENGTH]: 8,
-        },
-        cpassword: {
-          [ValidationTypes.REQUIRED]: true,
-          [ValidationTypes.EQUAL]: "password"
-        }
-      };
-      const messages = {
-
-        password: {
-          [ValidationTypes.REQUIRED]: "Please enter password.",
-          [ValidationTypes.MINLENGTH]: "Please enter at least 8 characters.",
-        },
-        cpassword: {
-          [ValidationTypes.REQUIRED]: "Please enter confirm password.",
-          [ValidationTypes.EQUAL]: "Password and confirm password didn't match"
-        }
-      };
-      const { isValid, errors } = Validator(obj, validations, messages);
-      if (!isValid) {
-        this.setState({
-          errors,
-          isLoading: false
-        });
-        return;
-      }
+     
       axios.put("http://192.168.2.112:8080/updatePasswordViaEmail", {
         email: this.state.email,
         resetPasswordToken: this.props.match.params.token,

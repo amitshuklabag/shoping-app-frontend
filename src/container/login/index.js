@@ -1,5 +1,4 @@
 import Axios from "axios";
-import Validator, { ValidationTypes } from "js-object-validation";
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -30,33 +29,6 @@ class Login extends Component {
     try {
       const { email, password } = this.state;
       const obj = { email, password };
-      const validations = {
-        email: {
-          [ValidationTypes.REQUIRED]: true,
-          [ValidationTypes.EMAIL]: true,
-        },
-        password: {
-          [ValidationTypes.REQUIRED]: true,
-        },
-      };
-      const messages = {
-        email: {
-          [ValidationTypes.EMAIL]: "Please enter valid email address",
-          [ValidationTypes.REQUIRED]: "Please Enter email address",
-        },
-        password: {
-          [ValidationTypes.REQUIRED]: "Please Enter password",
-        },
-      };
-      const { isValid, errors } = Validator(obj, validations, messages);
-      if (!isValid) {
-        console.log(errors);
-        this.setState({
-          errors,
-          isLoading: false,
-        });
-        return;
-      }
       const response = await Axios.post("http://192.168.2.118:8080/login", obj);
       localStorage.setItem("token", response.data.token);
       if (!toast.isActive(this.toastId)) {

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import axios from "axios";
-import Validator, { ValidationTypes } from "js-object-validation";
 import { toast } from "react-toastify";
 import "./index.css";
 import SignupComponent from "../../components/signup";
@@ -49,70 +48,7 @@ class Signup extends Component {
         file
       } = this.state;
       const obj = { name, email, password, cpassword, mobile_no, gender };
-      const validations = {
-        name: {
-          [ValidationTypes.REQUIRED]: true,
-          [ValidationTypes.MINLENGTH]: 2,
-          [ValidationTypes.MAXLENGTH]: 50
-        },
-        email: {
-          [ValidationTypes.REQUIRED]: true,
-          [ValidationTypes.EMAIL]: true
-        },
-        password: {
-          [ValidationTypes.REQUIRED]: true,
-          [ValidationTypes.MINLENGTH]: 6
-        },
-        cpassword: {
-          [ValidationTypes.REQUIRED]: true,
-          [ValidationTypes.EQUAL]: "password"
-        },
-        mobile_no: {
-          [ValidationTypes.REQUIRED]: true,
-          [ValidationTypes.NUMERIC]: true,
-          [ValidationTypes.MINLENGTH]: 7,
-          [ValidationTypes.MAXLENGTH]: 14
-        },
-        gender: {
-          [ValidationTypes.REQUIRED]: true
-        }
-      };
-      const messages = {
-        name: {
-          [ValidationTypes.REQUIRED]: "Please enter name.",
-          [ValidationTypes.MINLENGTH]: "Please enter at least 2 characters.",
-          [ValidationTypes.MAXLENGTH]: "Please enter upto 50 characters"
-        },
-        email: {
-          [ValidationTypes.REQUIRED]: "Please enter email.",
-          [ValidationTypes.EMAIL]: "Please enter valid email."
-        },
-        password: {
-          [ValidationTypes.REQUIRED]: "Please enter password.",
-          [ValidationTypes.MINLENGTH]: "Please enter at least 6 characters."
-        },
-        cpassword: {
-          [ValidationTypes.REQUIRED]: "Please enter confirm password.",
-          [ValidationTypes.EQUAL]: "Password and confirm password didn't match"
-        },
-        mobile_no: {
-          [ValidationTypes.REQUIRED]: "Please enter mobile no.",
-          [ValidationTypes.NUMERIC]: "Please enter in number",
-          [ValidationTypes.MINLENGTH]: "Please enter atleast 7 digits",
-          [ValidationTypes.MAXLENGTH]: "Please enter upto 14 digits"
-        },
-        gender: {
-          [ValidationTypes.REQUIRED]: "Please select gender"
-        }
-      };
-      const { isValid, errors } = Validator(obj, validations, messages);
-      if (!isValid) {
-        this.setState({
-          errors,
-          isLoading: false
-        });
-        return;
-      }
+      
       const data = {
         name,
         email,

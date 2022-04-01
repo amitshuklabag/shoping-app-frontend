@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-
-import Validator, { ValidationTypes } from "js-object-validation";
 import Swal from "sweetalert2";
 import ForgotComponent from "../../components/forgot-password";
 class ForgotPassword extends Component {
@@ -43,26 +41,6 @@ class ForgotPassword extends Component {
     try {
       const { email } = this.state;
       const obj = { email };
-      const validations = {
-        email: {
-          [ValidationTypes.REQUIRED]: true,
-          [ValidationTypes.EMAIL]: true
-        }
-      };
-      const messages = {
-        email: {
-          [ValidationTypes.REQUIRED]: "Please enter email address.",
-          [ValidationTypes.EMAIL]: "Please enter valid email address."
-        }
-      };
-      const { isValid, errors } = Validator(obj, validations, messages);
-      if (!isValid) {
-        this.setState({
-          errors,
-          isLoading: false
-        });
-        return;
-      }
 
       const response = await axios.post(
         "http://192.168.2.118:8080/forgotPasswordUser",

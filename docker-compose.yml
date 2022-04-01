@@ -1,0 +1,9 @@
+services:
+  app:
+    image: shoping-app-frontend
+    restart: always
+    ports:
+      - 80:3000
+    environment:
+      DOMAIN: https://ubuntu-n12kw-u76.vm.appdrag.net
+version: '3'

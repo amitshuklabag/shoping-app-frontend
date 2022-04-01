@@ -75,9 +75,10 @@ class Profile extends Component {
         gender,
         mobile_no,
       };
-      const data = {
-        name,
-        email,
+      const validations = {
+        name: {
+          [ValidationTypes.REQUIRED]: true,
+          [ValidationTypes.MAXLEN  email,
         mobile_no,
         gender,
         file,
