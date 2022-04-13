@@ -163,5 +163,4 @@ class Headers extends Component {
     );
   }
 }
-
 export default withRouter(Headers);
